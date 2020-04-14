@@ -51,6 +51,10 @@ For the `jl.ipynb`, upload as a new Notebook to google colab and follow the inst
 
 ## Results
 Google colab: Tesla P4
-![res.png](https://raw.githubusercontent.com/KonstantinosChatziantoniou/JuliaCUDA_GraphTriangles/tree/master/Res/rel_speed.png)
-![res2.png](https://raw.githubusercontent.com/KonstantinosChatziantoniou/JuliaCUDA_GraphTriangles/tree/master/Res/time_auto.png)
-![res3.png](https://raw.githubusercontent.com/KonstantinosChatziantoniou/JuliaCUDA_GraphTriangles/tree/master/Res/time_del.png)
+
+![res.png](https://raw.githubusercontent.com/KonstantinosChatziantoniou/JuliaCUDA_GraphTriangles/master/Res/rel_speed.png)  
+
+![res2.png](https://raw.githubusercontent.com/KonstantinosChatziantoniou/JuliaCUDA_GraphTriangles/master/Res/time_auto.png)  
+
+![res3.png](https://raw.githubusercontent.com/KonstantinosChatziantoniou/JuliaCUDA_GraphTriangles/master/Res/time_del.png)  
+
