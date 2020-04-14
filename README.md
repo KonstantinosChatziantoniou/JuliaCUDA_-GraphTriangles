@@ -21,7 +21,7 @@ Returns Distances and Indices for each Nearest Neighbour
 
 + `validation.jl` Does everything `main.jl` does. It validates the results using the `NearestNeighbour` package.
 
-```Julia/Code/```
+```Julia/src/```
 
 Contains the preprocessing function definitions and the kernel definitions.
 
@@ -31,10 +31,7 @@ Contains the preprocessing function definitions and the kernel definitions.
 The `C` implementation of the grid knn algorithm is taken from this repo [https://github.com/KonstantinosChatziantoniou/GraphTrianglesCounting]
 
 
-```Notebook```
 
-Containg a Jyputer notebook to be executed in google colab for execution time benchmarking. The notebook includes scripts for 
-installing cuda and julia in goole colab.
 
 
 ## Execution
@@ -44,10 +41,8 @@ installing cuda and julia in goole colab.
 For the`C` implementation
 
                       run `make`
-                      run `./mainProgram N B` where N is the number of points (2^N) 
-                          and B is the number of blocks per dimension (2^B,2^B,2^B)
-
-For the `jl.ipynb`, upload as a new Notebook to google colab and follow the instructions inside
+                      run `./mainProgram ./path_to_graph`
+!!!!! When running the C implementations remove the comments of the data files `(tail -n +3 auto.mtx > auto2.mtx)`
 
 ## Results
 Google colab: Tesla P4
