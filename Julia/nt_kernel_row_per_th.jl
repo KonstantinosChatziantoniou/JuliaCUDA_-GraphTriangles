@@ -1,4 +1,4 @@
-using CUDAnative, CUDAdrv, CuArrays
+using CUDA
 # Each block is assigned a row.
 # Each thread checks the main row with one of the columns pointed by the row.
 function countTri_row_per_th_nt(csr_rows, col_indx, out_sum)
@@ -88,7 +88,7 @@ end
 function CountTriangles_RowPerTh_nt(csr_rows, col_indx, max_per_row)
     dev_csr_rows = CuArray(csr_rows)
     dev_col_indx = CuArray(col_indx)
-    dev_out_sum = CuArrays.zeros(Int32, size(csr_rows)[1])
+    dev_out_sum = CUDA.zeros(Int32, size(csr_rows)[1])
 
     blocks = Int64(floor((size(csr_rows)[1])/(512*512)+ 1))
     ## Threads MUST be more then the max nnz elements per row

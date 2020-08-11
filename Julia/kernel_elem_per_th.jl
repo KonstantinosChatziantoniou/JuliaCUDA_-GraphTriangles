@@ -1,9 +1,9 @@
-using CUDAnative, CUDAdrv, CuArrays
+using CUDA
 
 
 
 # Each block is assigned a row.
-# Each thread checks  the main row   
+# Each thread checks  the main row
 # with one of the element of the columns pointed by the row.
 function countTri_elem_per_th(csr_rows, col_indx, out_sum, max_nnz)
     bid::Int32 = blockIdx().x + (blockIdx().y-1)*gridDim().x + (blockIdx().z-1)*gridDim().x*gridDim().y
@@ -72,7 +72,7 @@ end
 function CountTriangles_ElemPerTh(csr_rows, col_indx, max_per_row)
     dev_csr_rows = CuArray(csr_rows)
     dev_col_indx = CuArray(col_indx)
-    dev_out_sum = CuArrays.zeros(Int32, size(csr_rows)[1])
+    dev_out_sum = CUDA.zeros(Int32, size(csr_rows)[1])
     th_groups = 1
     threads = 0
     while 32*th_groups < max_per_row

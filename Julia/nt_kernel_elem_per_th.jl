@@ -1,4 +1,4 @@
-using CUDAnative, CUDAdrv, CuArrays
+using CUDA
 
 
 
@@ -72,7 +72,7 @@ end
 function CountTriangles_ElemPerTh_nt(csr_rows, col_indx, max_per_row)
     dev_csr_rows = CuArray(csr_rows)
     dev_col_indx = CuArray(col_indx)
-    dev_out_sum = CuArrays.zeros(Int32, size(csr_rows)[1])
+    dev_out_sum = CUDA.zeros(Int32, size(csr_rows)[1])
     th_groups = 1
     threads = 0
     while 32*th_groups < max_per_row

@@ -1,5 +1,4 @@
-using CUDAnative, CUDAdrv, CuArrays
-
+using CUDA
 
 
 # Each block is assigned a row.
@@ -18,10 +17,10 @@ function countTri_elem_per_th_limit(csr_rows, col_indx, out_sum, max_mem_nnz, ma
     end
 
     sh_row = @cuDynamicSharedMem(Int32, max_mem_nnz)
-    sh_cols = @cuDynamicSharedMem(Int32, max_nnz + CUDAnative.max(stride, max_nnz),
+    sh_cols = @cuDynamicSharedMem(Int32, max_nnz + CUDA.max(stride, max_nnz),
                                 sizeof(Int32)*max_mem_nnz)
     sh_sum = @cuDynamicSharedMem(Int32, blockDim().y,
-            (max_nnz + CUDAnative.max(stride, max_nnz) + max_mem_nnz)*sizeof(Int32))
+            (max_nnz + CUDA.max(stride, max_nnz) + max_mem_nnz)*sizeof(Int32))
 
     @inbounds row_start::Int32 =  csr_rows[bid]
     @inbounds row_end::Int32 = (bid == rows) ?  nnz+1 : csr_rows[bid + 1]
@@ -85,7 +84,7 @@ end
 function CountTriangles_ElemPerThLimit(csr_rows, col_indx, max_per_row; th_groups=2)
     dev_csr_rows = CuArray(csr_rows)
     dev_col_indx = CuArray(col_indx)
-    dev_out_sum = CuArrays.zeros(Int32, size(csr_rows)[1])
+    dev_out_sum = CUDA.zeros(Int32, size(csr_rows)[1])
     thread_groups = th_groups
     max_mem_nnz = 0
     while max_mem_nnz < max_per_row
